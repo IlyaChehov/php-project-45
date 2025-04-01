@@ -17,21 +17,26 @@ use function Php\Project\Engine\getRandomNumber;
 use function Php\Project\Engine\showQueststions;
 use function Php\Project\Engine\getUserResponce;
 use function Php\Project\Engine\showCorrectAnswer;
+use function Php\Project\Engine\getCalcGCD;
 
 $userName = meetUser();
 $isWinner = true;
-$i = 1;
+$result = 0;
+$i = 0;
 
-showMessage('Answer "yes" if the number is even, otherwise answer "no".');
+showMessage('Find the greatest common divisor of given numbers.');
 
-while ($i <= ROUND) {
-    $randomNumber = getRandomNumber();
-    $isEven = $randomNumber % 2 === 0 ? 'yes' : 'no';
-    showQueststions($randomNumber);
+while ($i < ROUND) {
+    $letfOperand = getRandomNumber();
+    $rightOperand = getRandomNumber();
+    $questionText = "{$letfOperand} {$rightOperand}";
+    $result = getCalcGCD($letfOperand, $rightOperand);
+
+    showQueststions($questionText);
     $answerUser = getUserResponce('Your answer');
 
-    if ($answerUser !== $isEven) {
-        showCorrectAnswer($answerUser, $isEven, $userName);
+    if ((int)$answerUser !== $result) {
+        showCorrectAnswer($answerUser, $result, $userName);
         $isWinner = false;
         break;
     }
