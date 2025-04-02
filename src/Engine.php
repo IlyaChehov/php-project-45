@@ -17,6 +17,7 @@ const ROUND = 3;
 const MIN_NUMBER = 1;
 const MAX_NUMBER = 20;
 const OPERATIONS_CALC_GAME = ['+', '-', '*'];
+const LENGTH_PROGRESSION = 10;
 
 function meetUser(): string
 {
@@ -26,9 +27,9 @@ function meetUser(): string
     return $name;
 };
 
-function getRandomNumber(): int
+function getRandomNumber($a = MIN_NUMBER, $b = MAX_NUMBER): int
 {
-    return rand(MIN_NUMBER, MAX_NUMBER);
+    return rand($a, $b);
 };
 
 function showMessage(string $message): void
@@ -58,4 +59,37 @@ function getCalcGCD(int $firstNumber, int $secondNumber): int
     }
     $var = $firstNumber % $secondNumber;
     return ($var === 0) ? $secondNumber : getCalcGCD($secondNumber, $var);
+}
+
+function getProgressionArray()
+{
+    $progressionArray = [];
+    $lengthArray = 10;
+    $step = getRandomNumber();
+    $start = getRandomNumber();
+    $currentElement = null;
+
+    for ($i = 0; $i <= $lengthArray; $i++) {
+        $currentElement = $start + $i * $step;
+        $progressionArray[] = $currentElement;
+    }
+
+    $hiddenIndex =  rand(0, count($progressionArray) - 1);
+    $hiddemElement = $progressionArray[$hiddenIndex];
+    $progressionArray[$hiddenIndex] = '..';
+
+    return [$progressionArray, $hiddemElement];
+}
+
+function isPrimeNumber(int $number): string
+{
+    if ($number < 2) {
+        return false;
+    }
+    for ($i = 3; $i < $number; $i += 2) {
+        if ($number % $i === 0) {
+            return false;
+        }
+    }
+    return true;
 }
