@@ -4,16 +4,16 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Hexlet\\Code\\": "src/"
+            "Php\\Project\\": "src/"
         },
         "files": [
-            "./src/Cli.php",
-            "./src/Engine.php",
-            "./src/Games/CalcGame.php",
-            "./src/Games/EvenGame.php",
-            "./src/Games/GcdGame.php",
-            "./src/Games/PrimeGame.php",
-            "./src/Games/ProgressionGame.php"
+            "src/LoadlAutoload.php",
+            "src/Engine.php",
+            "src/Games/CalcGame.php",
+            "src/Games/EvenGame.php",
+            "src/Games/GcdGame.php",
+            "src/Games/PrimeGame.php",
+            "src/Games/ProgressionGame.php"
         ]
     },
     "authors": [

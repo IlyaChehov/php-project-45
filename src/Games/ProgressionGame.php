@@ -2,22 +2,14 @@
 
 namespace Php\Project\Games\ProgressionGame;
 
-$autoloadPath1 = __DIR__ . '/../../../../autoload.php';
-$autoloadPath2 = __DIR__ . '/../../vendor/autoload.php';
-
-if (file_exists($autoloadPath1)) {
-    require_once $autoloadPath1;
-} else {
-    require_once $autoloadPath2;
-}
-
-use const Php\Project\Engine\ROUND;
 use function Php\Project\Engine\meetUser;
 use function Php\Project\Engine\showMessage;
 use function Php\Project\Engine\getProgressionArray;
 use function Php\Project\Engine\showQueststions;
 use function Php\Project\Engine\getUserResponce;
 use function Php\Project\Engine\showCorrectAnswer;
+
+use const Php\Project\Engine\ROUND;
 
 function progressionGame(): void
 {
