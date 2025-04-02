@@ -8,13 +8,17 @@
         },
         "files": [
             "./src/Cli.php",
-            "./src/Engine.php"
+            "./src/Engine.php",
+            "./src/Games/CalcGame.php",
+            "./src/Games/EvenGame.php",
+            "./src/Games/GcdGame.php",
+            "./src/Games/PrimeGame.php",
+            "./src/Games/ProgressionGame.php"
         ]
     },
     "authors": [
         {
-            "name": "Ilya Chehov",
-            "email": "ichehoc96@gmail.com"
+            "name": "Ilya Chehov"
         }
     ],
     "bin": [
@@ -22,8 +26,8 @@
         "bin/brain-even",
         "bin/brain-calc",
         "bin/brain-gcd",
-        "brain-progression"
-
+        "bin/brain-progression",
+        "bin/brain-prime"
     ],
     "require": {
         "wp-cli/php-cli-tools": "^0.12.4"

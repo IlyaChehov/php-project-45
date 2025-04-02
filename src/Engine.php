@@ -25,12 +25,12 @@ function meetUser(): string
     $name = \cli\prompt('May I have your name?');
     \cli\line("Hello, %s!", $name);
     return $name;
-};
+}
 
 function getRandomNumber($a = MIN_NUMBER, $b = MAX_NUMBER): int
 {
     return rand($a, $b);
-};
+}
 
 function showMessage(string $message): void
 {

@@ -10,36 +10,6 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use const Php\Project\Engine\ROUND;
-use function Php\Project\Engine\meetUser;
-use function Php\Project\Engine\showMessage;
-use function Php\Project\Engine\getRandomNumber;
-use function Php\Project\Engine\showQueststions;
-use function Php\Project\Engine\getUserResponce;
-use function Php\Project\Engine\showCorrectAnswer;
+use function Php\Project\Games\EvenGame\evenGame;
 
-$userName = meetUser();
-$isWinner = true;
-$i = 1;
-
-showMessage('Answer "yes" if the number is even, otherwise answer "no".');
-
-while ($i <= ROUND) {
-    $randomNumber = getRandomNumber();
-    $isEven = $randomNumber % 2 === 0 ? 'yes' : 'no';
-    showQueststions($randomNumber);
-    $answerUser = getUserResponce('Your answer');
-
-    if ($answerUser !== $isEven) {
-        showCorrectAnswer($answerUser, $isEven, $userName);
-        $isWinner = false;
-        break;
-    }
-
-    showMessage('Correct!');
-    $i++;
-}
-
-if ($isWinner) {
-    showMessage("Congratulations, {$userName}!");
-}
+evenGame();

@@ -10,33 +10,6 @@ if (file_exists($autoloadPath1)) {
     require_once $autoloadPath2;
 }
 
-use const Php\Project\Engine\ROUND;
-use function Php\Project\Engine\meetUser;
-use function Php\Project\Engine\showMessage;
-use function Php\Project\Engine\getProgressionArray;
-use function Php\Project\Engine\showQueststions;
-use function Php\Project\Engine\getUserResponce;
-use function Php\Project\Engine\showCorrectAnswer;
+use function Php\Project\Games\ProgressionGame\progressionGame;
 
-$userName = meetUser();
-$isWinner = true;
-$i = 1;
-showMessage('What number is missing in the progression?');
-
-while ($i <= ROUND) {
-    [$progressionArray, $hiddemElement] = getProgressionArray();
-    $progressionArray = implode(' ', $progressionArray);
-    showQueststions($progressionArray);
-    $answer = getUserResponce('Your answer');
-    if ((int)$answer !== $hiddemElement) {
-        showCorrectAnswer($answer, $hiddemElement, $userName);
-        $isWinner = false;
-        break;
-    }
-    showMessage('Correct!');
-    $i++;
-}
-
-if ($isWinner) {
-    showMessage("Congratulations, {$userName}!");
-}
+progressionGame();
