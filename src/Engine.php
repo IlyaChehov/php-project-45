@@ -19,7 +19,7 @@ function meetUser(): string
     return $name;
 }
 
-function getRandomNumber($a = MIN_NUMBER, $b = MAX_NUMBER): int
+function getRandomNumber(int $a = MIN_NUMBER, int $b = MAX_NUMBER): int
 {
     return rand($a, $b);
 }
@@ -39,7 +39,7 @@ function getUserResponce(string $message): string
     return \cli\prompt($message);
 }
 
-function showCorrectAnswer($wrongAnswer, $correctAnswer, $name): void
+function showCorrectAnswer(string $wrongAnswer, string $correctAnswer, string $name): void
 {
     \cli\line("'{$wrongAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.\nLet's try again, $name!");
 }

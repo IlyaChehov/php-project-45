@@ -20,7 +20,7 @@ function evenGame(): void
     while ($i <= ROUND) {
         $randomNumber = getRandomNumber();
         $isEven = $randomNumber % 2 === 0 ? 'yes' : 'no';
-        showQueststions($randomNumber);
+        showQueststions((string) $randomNumber);
         $answerUser = getUserResponce('Your answer');
 
         if ($answerUser !== $isEven) {

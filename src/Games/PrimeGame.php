@@ -21,7 +21,7 @@ function primeGame(): void
     while ($i <= ROUND) {
         $randomNumber = getRandomNumber();
         $isPrime = isPrimeNumber($randomNumber) ? 'yes' : 'no';
-        showQueststions($randomNumber);
+        showQueststions((string) $randomNumber);
         $answerUser = getUserResponce('Your answer');
         if ($answerUser !== $isPrime) {
             showCorrectAnswer($answerUser, $isPrime, $userName);
