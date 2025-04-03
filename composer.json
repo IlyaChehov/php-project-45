@@ -8,6 +8,7 @@
         },
         "files": [
             "src/LoadlAutoload.php",
+            "src/Cli.php",
             "src/Engine.php",
             "src/Games/CalcGame.php",
             "src/Games/EvenGame.php",

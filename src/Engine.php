@@ -41,7 +41,7 @@ function getUserResponce(string $message): string
 
 function showCorrectAnswer($wrongAnswer, $correctAnswer, $name): void
 {
-    \cli\line("'{$wrongAnswer}' is wrong answer ;(. Correct answer was '${correctAnswer}'.\nLet's try again, $name!");
+    \cli\line("'{$wrongAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.\nLet's try again, $name!");
 }
 
 function getCalcGCD(int $firstNumber, int $secondNumber): int
