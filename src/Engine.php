@@ -53,7 +53,7 @@ function getCalcGCD(int $firstNumber, int $secondNumber): int
     return ($var === 0) ? $secondNumber : getCalcGCD($secondNumber, $var);
 }
 
-function getProgressionArray()
+function getProgressionArray(): array
 {
     $progressionArray = [];
     $lengthArray = 10;

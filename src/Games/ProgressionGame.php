@@ -23,7 +23,7 @@ function progressionGame(): void
         showQueststions($progressionArray);
         $answer = getUserResponce('Your answer');
         if ((int)$answer !== $hiddemElement) {
-            showCorrectAnswer($answer, $hiddemElement, $userName);
+            showCorrectAnswer($answer, (string)$hiddemElement, $userName);
             return;
         }
         showMessage('Correct!');

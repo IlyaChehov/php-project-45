@@ -45,7 +45,7 @@ function calcGame(): void
         $answerUser = getUserResponce('Your answer');
 
         if ((int)$answerUser !== $result) {
-            showCorrectAnswer((string)$answerUser, (string)$result, $userName);
+            showCorrectAnswer($answerUser, (string)$result, $userName);
             return;
         }
 

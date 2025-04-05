@@ -29,7 +29,7 @@ function gcdGame(): void
         $answerUser = getUserResponce('Your answer');
 
         if ((int)$answerUser !== $result) {
-            showCorrectAnswer($answerUser, $result, $userName);
+            showCorrectAnswer($answerUser, (string)$result, $userName);
             return;
         }
 
