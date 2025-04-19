@@ -46,7 +46,7 @@ function showCorrectAnswer(string $wrongAnswer, string $correctAnswer, string $n
 
 function getCalcGCD(int $firstNumber, int $secondNumber): int
 {
-    if ($firstNumber == 0 || $secondNumber == 0) {
+    if ($firstNumber === 0 || $secondNumber === 0) {
         return max($firstNumber, $secondNumber);
     }
     $var = $firstNumber % $secondNumber;
