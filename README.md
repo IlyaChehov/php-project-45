@@ -7,6 +7,11 @@
 
 Набор из 5 консольных математических игр для тренировки логики и арифметики.
 
+## Минимальные требования
+- PHP >= 8.1
+- Composer
+- Make (или можно запускать вручную)
+
 ## Быстрый старт
 
 ### Установка
@@ -25,6 +30,13 @@
 - make brain-progression # Арифметическая прогрессия
 - make brain-prime      # Простые числа
 ```
+
+## Демонтрация
+### Победа (3 правильных ответа)
+[![asciinema](https://asciinema.org/a/y4yYlColmvW0pioauy7WkXUdI.svg)](https://asciinema.org/a/y4yYlColmvW0pioauy7WkXUdI)
+### Проигрыш (неправильный ответ)
+[![asciinema](https://asciinema.org/a/uwgeHRDuT7ewcaMmwY37hT7b4.svg)](https://asciinema.org/a/uwgeHRDuT7ewcaMmwY37hT7b4)
+
 
 ## Описание игр
 1. **Brain Even**  
@@ -89,6 +101,3 @@ Correct!
 ├── Makefile                      # Управление командами
 └── composer.json              # Конфигурация PHP
 ```
-
-chmod +x bin/brain-even
-composer dump-autoload
