@@ -2,22 +2,29 @@
 
 namespace Php\Project\Games\GcdGame;
 
+use function cli\line;
+use function cli\prompt;
 use function Php\Project\Engine\meetUser;
-use function Php\Project\Engine\showMessage;
 use function Php\Project\Engine\getRandomNumber;
-use function Php\Project\Engine\showQueststions;
-use function Php\Project\Engine\getUserResponce;
 use function Php\Project\Engine\showCorrectAnswer;
-use function Php\Project\Engine\getCalcGCD;
 
 use const Php\Project\Engine\ROUND;
 
-function gcdGame(): void
+function getCalcGCD(int $firstNumber, int $secondNumber): int
+{
+    if ($firstNumber === 0 || $secondNumber === 0) {
+        return max($firstNumber, $secondNumber);
+    }
+    $var = $firstNumber % $secondNumber;
+    return ($var === 0) ? $secondNumber : getCalcGCD($secondNumber, $var);
+}
+
+function startGcdGame(): void
 {
     $userName = meetUser();
     $result = 0;
     $i = 0;
-    showMessage('Find the greatest common divisor of given numbers.');
+    line('Find the greatest common divisor of given numbers.');
 
     while ($i < ROUND) {
         $letfOperand = getRandomNumber();
@@ -25,17 +32,17 @@ function gcdGame(): void
         $questionText = "{$letfOperand} {$rightOperand}";
         $result = getCalcGCD($letfOperand, $rightOperand);
 
-        showQueststions($questionText);
-        $answerUser = getUserResponce('Your answer');
+        line("Question: $questionText");
+        $answerUser = prompt('Your answer');
 
         if ((int)$answerUser !== $result) {
             showCorrectAnswer($answerUser, (string)$result, $userName);
             return;
         }
 
-        showMessage('Correct!');
+        line('Correct!');
         $i++;
     }
 
-    showMessage("Congratulations, {$userName}!");
+    line("Congratulations, {$userName}!");
 }

@@ -2,35 +2,34 @@
 
 namespace Php\Project\Games\EvenGame;
 
+use function cli\line;
+use function cli\prompt;
 use function Php\Project\Engine\meetUser;
-use function Php\Project\Engine\showMessage;
 use function Php\Project\Engine\getRandomNumber;
-use function Php\Project\Engine\showQueststions;
-use function Php\Project\Engine\getUserResponce;
 use function Php\Project\Engine\showCorrectAnswer;
 
 use const Php\Project\Engine\ROUND;
 
-function evenGame(): void
+function startEvenGame(): void
 {
     $userName = meetUser();
     $i = 1;
-    showMessage('Answer "yes" if the number is even, otherwise answer "no".');
+    line('Answer "yes" if the number is even, otherwise answer "no".');
 
     while ($i <= ROUND) {
-        $randomNumber = getRandomNumber();
+        $randomNumber = (string)getRandomNumber();
         $isEven = $randomNumber % 2 === 0 ? 'yes' : 'no';
-        showQueststions((string) $randomNumber);
-        $answerUser = getUserResponce('Your answer');
+        line("Question: $randomNumber");
+        $answerUser = prompt('Your answer');
 
         if ($answerUser !== $isEven) {
             showCorrectAnswer($answerUser, $isEven, $userName);
             return;
         }
 
-        showMessage('Correct!');
+        line('Correct!');
         $i++;
     }
 
-    showMessage("Congratulations, {$userName}!");
+    line("Congratulations, {$userName}!");
 }
