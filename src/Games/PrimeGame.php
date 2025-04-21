@@ -37,7 +37,7 @@ function startPrimeGame(): void
     line('Answer "yes" if given number is prime. Otherwise answer "no".');
 
     while ($i <= ROUND) {
-        $randomNumber = (string)getRandomNumber();
+        $randomNumber = getRandomNumber();
         $isPrime = isPrimeNumber($randomNumber) ? 'yes' : 'no';
         line("Question: $randomNumber");
         $answerUser = prompt('Your answer');
