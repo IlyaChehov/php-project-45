@@ -20,7 +20,7 @@ function isEven(int $number): bool
     return $number % 2 === 0;
 }
 
-function runGame(callable $fn, string $description)
+function runGame(callable $fn, string $description): void
 {
     line('Welcome to the Brain Games!');
     $userName = prompt('May I have your name?');

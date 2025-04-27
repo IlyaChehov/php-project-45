@@ -6,12 +6,13 @@ use function cli\line;
 use function Php\Project\Engine\getRandomNumber;
 use function Php\Project\Engine\runGame;
 
-function getAnswerAndQuestion(): array
+function getAnswerAndQuestion(): array | null
 {
     $operations = ['+', '-', '*'];
     $letfOperand = getRandomNumber();
     $rightOperand = getRandomNumber();
     $randOperation = $operations[rand(0, count($operations) - 1)];
+    $answer = null;
 
     switch ($randOperation) {
         case '+':
@@ -25,7 +26,7 @@ function getAnswerAndQuestion(): array
             break;
         default:
             line('This mathematical operation is not supported.');
-            break;
+            return null;
     }
 
     $question = "{$letfOperand} {$randOperation} {$rightOperand}";
