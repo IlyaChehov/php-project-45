@@ -2,13 +2,8 @@
 
 namespace Php\Project\Games\PrimeGame;
 
-use function cli\line;
-use function cli\prompt;
-use function Php\Project\Engine\meetUser;
 use function Php\Project\Engine\getRandomNumber;
-use function Php\Project\Engine\showCorrectAnswer;
-
-use const Php\Project\Engine\ROUND;
+use function Php\Project\Engine\runGame;
 
 function isPrimeNumber(int $number): bool
 {
@@ -30,25 +25,16 @@ function isPrimeNumber(int $number): bool
     return true;
 }
 
+function getAnswerAndQuestion(): array
+{
+    $randomNumber = getRandomNumber();
+    $answer = isPrimeNumber($randomNumber) ? 'yes' : 'no';
+
+    return [(string)$randomNumber, $answer];
+}
+
 function startPrimeGame(): void
 {
-    $userName = meetUser();
-    $i = 1;
-    line('Answer "yes" if given number is prime. Otherwise answer "no".');
-
-    while ($i <= ROUND) {
-        $randomNumber = getRandomNumber();
-        $isPrime = isPrimeNumber($randomNumber) ? 'yes' : 'no';
-        line("Question: $randomNumber");
-        $answerUser = prompt('Your answer');
-        if ($answerUser !== $isPrime) {
-            showCorrectAnswer($answerUser, $isPrime, $userName);
-            return;
-        }
-
-        line('Correct!');
-        $i++;
-    }
-
-    line("Congratulations, {$userName}!");
+    $description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
+    runGame('Php\Project\Games\PrimeGame\getAnswerAndQuestion', $description);
 }

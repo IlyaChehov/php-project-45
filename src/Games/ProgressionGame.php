@@ -2,13 +2,8 @@
 
 namespace Php\Project\Games\ProgressionGame;
 
-use function cli\line;
-use function cli\prompt;
 use function Php\Project\Engine\getRandomNumber;
-use function Php\Project\Engine\meetUser;
-use function Php\Project\Engine\showCorrectAnswer;
-
-use const Php\Project\Engine\ROUND;
+use function Php\Project\Engine\runGame;
 
 function getProgressionArray(): array
 {
@@ -30,24 +25,29 @@ function getProgressionArray(): array
     return [$progressionArray, $hiddemElement];
 }
 
-function startProgressionGame(): void
+function getAnswerAndQuestion(): array
 {
-    $userName = meetUser();
-    $i = 1;
-    line('What number is missing in the progression?');
+    $progressionArray = [];
+    $lengthArray = 10;
+    $step = getRandomNumber();
+    $start = getRandomNumber();
+    $currentElement = null;
 
-    while ($i <= ROUND) {
-        [$progressionArray, $hiddemElement] = getProgressionArray();
-        $progressionArray = implode(' ', $progressionArray);
-        line("Question: $progressionArray");
-        $answer = prompt('Your answer');
-        if ((int)$answer !== $hiddemElement) {
-            showCorrectAnswer($answer, (string)$hiddemElement, $userName);
-            return;
-        }
-        line('Correct!');
-        $i++;
+    for ($i = 0; $i <= $lengthArray; $i++) {
+        $currentElement = $start + $i * $step;
+        $progressionArray[] = $currentElement;
     }
 
-    line("Congratulations, {$userName}!");
+    $hiddenIndex =  rand(0, count($progressionArray) - 1);
+    $hiddemElement = $progressionArray[$hiddenIndex];
+    $progressionArray[$hiddenIndex] = '..';
+    $progressionArray = implode(' ', $progressionArray);
+
+    return [$progressionArray, (string)$hiddemElement];
+}
+
+function startProgressionGame(): void
+{
+    $description = 'What number is missing in the progression?';
+    runGame('Php\Project\Games\ProgressionGame\getAnswerAndQuestion', $description);
 }

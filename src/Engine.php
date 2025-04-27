@@ -3,27 +3,42 @@
 namespace Php\Project\Engine;
 
 use function cli\line;
+use function cli\prompt;
 
 const ROUND = 3;
 const MIN_NUMBER = 1;
 const MAX_NUMBER = 20;
-const OPERATIONS_CALC_GAME = ['+', '-', '*'];
 const LENGTH_PROGRESSION = 10;
-
-function meetUser(): string
-{
-    line('Welcome to the Brain Games!');
-    $name = \cli\prompt('May I have your name?');
-    line("Hello, %s!", $name);
-    return $name;
-}
 
 function getRandomNumber(int $a = MIN_NUMBER, int $b = MAX_NUMBER): int
 {
     return rand($a, $b);
 }
 
-function showCorrectAnswer(string $wrongAnswer, string $correctAnswer, string $name): void
+function isEven(int $number): bool
 {
-    line("'{$wrongAnswer}' is wrong answer ;(. Correct answer was '{$correctAnswer}'.\nLet's try again, $name!");
+    return $number % 2 === 0;
+}
+
+function runGame(callable $fn, string $description)
+{
+    line('Welcome to the Brain Games!');
+    $userName = prompt('May I have your name?');
+    line("Hello, %s!", $userName);
+    line($description);
+
+    for ($i = 0; $i < ROUND; $i++) {
+        [$question, $correntAnswer] = $fn();
+        line("Question: $question");
+        $userAnswer = prompt('Your answer');
+
+        if ($userAnswer !== $correntAnswer) {
+            line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correntAnswer}'.\nLet's try again, $userName!");
+            return;
+        }
+
+        line('Correct!');
+    }
+
+    line("Congratulations, {$userName}!");
 }
