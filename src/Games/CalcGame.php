@@ -6,7 +6,7 @@ use function cli\line;
 use function Php\Project\Engine\getRandomNumber;
 use function Php\Project\Engine\runGame;
 
-function getAnswerAndQuestion(): array | null
+function getAnswerAndQuestion(): array
 {
     $operations = ['+', '-', '*'];
     $letfOperand = getRandomNumber();
