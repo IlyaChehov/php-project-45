@@ -33,7 +33,8 @@ function runGame(callable $fn, string $description)
         $userAnswer = prompt('Your answer');
 
         if ($userAnswer !== $correntAnswer) {
-            line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correntAnswer}'.\nLet's try again, $userName!");
+            line("'{$userAnswer}' is wrong answer ;(. Correct answer was '{$correntAnswer}'.");
+            line("Let's try again, $userName!");
             return;
         }
 
