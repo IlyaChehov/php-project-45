@@ -24,9 +24,6 @@ function getAnswerAndQuestion(): array | null
         case '*':
             $answer = $letfOperand * $rightOperand;
             break;
-        default:
-            line('This mathematical operation is not supported.');
-            return null;
     }
 
     $question = "{$letfOperand} {$randOperation} {$rightOperand}";
