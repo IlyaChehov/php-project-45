@@ -2,52 +2,31 @@
 
 namespace Php\Project\Games\ProgressionGame;
 
-use function Php\Project\Engine\getRandomNumber;
 use function Php\Project\Engine\runGame;
 
-function getProgressionArray(): array
+function buildRound(): array
 {
-    $progressionArray = [];
-    $lengthArray = 10;
-    $step = getRandomNumber();
-    $start = getRandomNumber();
+    $progression = [];
+    $progressionLength = 10;
+    $step = rand(1, 20);
+    $start = rand(1, 20);
     $currentElement = null;
 
-    for ($i = 0; $i <= $lengthArray; $i++) {
+    for ($i = 0; $i <= $progressionLength; $i++) {
         $currentElement = $start + $i * $step;
-        $progressionArray[] = $currentElement;
+        $progression[] = $currentElement;
     }
 
-    $hiddenIndex =  rand(0, count($progressionArray) - 1);
-    $hiddemElement = $progressionArray[$hiddenIndex];
-    $progressionArray[$hiddenIndex] = '..';
+    $hiddenIndex = rand(0, count($progression) - 1);
+    $hiddemElement = $progression[$hiddenIndex];
+    $progression[$hiddenIndex] = '..';
+    $progression = implode(' ', $progression);
 
-    return [$progressionArray, $hiddemElement];
-}
-
-function getAnswerAndQuestion(): array
-{
-    $progressionArray = [];
-    $lengthArray = 10;
-    $step = getRandomNumber();
-    $start = getRandomNumber();
-    $currentElement = null;
-
-    for ($i = 0; $i <= $lengthArray; $i++) {
-        $currentElement = $start + $i * $step;
-        $progressionArray[] = $currentElement;
-    }
-
-    $hiddenIndex =  rand(0, count($progressionArray) - 1);
-    $hiddemElement = $progressionArray[$hiddenIndex];
-    $progressionArray[$hiddenIndex] = '..';
-    $progressionArray = implode(' ', $progressionArray);
-
-    return [$progressionArray, (string)$hiddemElement];
+    return [$progression, (string)$hiddemElement];
 }
 
 function startProgressionGame(): void
 {
     $description = 'What number is missing in the progression?';
-    runGame('Php\Project\Games\ProgressionGame\getAnswerAndQuestion', $description);
+    runGame('Php\Project\Games\ProgressionGame\buildRound', $description);
 }

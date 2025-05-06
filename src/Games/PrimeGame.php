@@ -2,7 +2,6 @@
 
 namespace Php\Project\Games\PrimeGame;
 
-use function Php\Project\Engine\getRandomNumber;
 use function Php\Project\Engine\runGame;
 
 function isPrimeNumber(int $number): bool
@@ -25,9 +24,9 @@ function isPrimeNumber(int $number): bool
     return true;
 }
 
-function getAnswerAndQuestion(): array
+function buildRound(): array
 {
-    $randomNumber = getRandomNumber();
+    $randomNumber = rand(1, 20);
     $answer = isPrimeNumber($randomNumber) ? 'yes' : 'no';
 
     return [(string)$randomNumber, $answer];
@@ -36,5 +35,5 @@ function getAnswerAndQuestion(): array
 function startPrimeGame(): void
 {
     $description = 'Answer "yes" if given number is prime. Otherwise answer "no".';
-    runGame('Php\Project\Games\PrimeGame\getAnswerAndQuestion', $description);
+    runGame('Php\Project\Games\PrimeGame\buildRound', $description);
 }

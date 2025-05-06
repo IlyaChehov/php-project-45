@@ -2,31 +2,30 @@
 
 namespace Php\Project\Games\GcdGame;
 
-use function Php\Project\Engine\getRandomNumber;
 use function Php\Project\Engine\runGame;
 
-function getAnswerAndQuestion(): array
+function buildRound(): array
 {
-    $letfOperand = getRandomNumber();
-    $rightOperand = getRandomNumber();
+    $letfOperand = rand(1, 20);
+    $rightOperand = rand(1, 20);
     $question = "{$letfOperand} {$rightOperand}";
-    $answer = getCalcGCD($letfOperand, $rightOperand);
+    $answer = getGCD($letfOperand, $rightOperand);
 
     return [$question, (string)$answer];
 }
 
 
-function getCalcGCD(int $firstNumber, int $secondNumber): int
+function getGCD(int $firstNumber, int $secondNumber): int
 {
     if ($firstNumber === 0 || $secondNumber === 0) {
         return max($firstNumber, $secondNumber);
     }
     $var = $firstNumber % $secondNumber;
-    return ($var === 0) ? $secondNumber : getCalcGCD($secondNumber, $var);
+    return ($var === 0) ? $secondNumber : getGCD($secondNumber, $var);
 }
 
 function startGcdGame(): void
 {
     $description = 'Find the greatest common divisor of given numbers.';
-    runGame('Php\Project\Games\GcdGame\getAnswerAndQuestion', $description);
+    runGame('Php\Project\Games\GcdGame\buildRound', $description);
 }
